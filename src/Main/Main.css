@@ -1,0 +1,9 @@
+.allNotes {
+    background: rgb(151, 231, 255);
+    height: 85vh;
+    width: 70vw;
+}
+
+.allNotes > h2 {
+    background: rgb(151, 231, 255);
+}

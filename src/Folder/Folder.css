@@ -1,0 +1,10 @@
+.allFolders {
+    background: #E8A87C;
+    height: 85vh;
+    width: 30vw;
+}
+
+.allFolders > h2 {
+    background: #E8A87C;
+    color: black;
+}
