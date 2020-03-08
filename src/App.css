@@ -3,7 +3,7 @@
     text-align: center;
     margin: 0;
     text-decoration: none;
-    background: whitesmoke;
+    background: #2B7A78;
 }
 
 .App {
@@ -11,8 +11,9 @@
     flex-direction: column;
 }
 
+
 main {
-    height: 85vh;
     display: flex;
     flex-direction: row;
+   
 }

@@ -1,0 +1,31 @@
+
+.noteTitle {
+    background:  #FEFFFF;
+    padding: 10px;
+}
+
+.noteModifiedDate {
+    background: #FEFFFF;
+    padding: 5px 5px 5px 10px;
+    color: #2B7A78;
+}
+
+a {
+    background:  #FEFFFF;
+    color:#17252A;
+}
+
+.date {
+    background: #FEFFFF;
+    color: #2B7A78;
+}
+
+.note {
+        background: #FEFFFF;
+    
+}
+
+.deleteNote {
+    background: #2E9CCA;
+    margin: 5px;
+}

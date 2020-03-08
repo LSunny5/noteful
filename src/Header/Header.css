@@ -1,14 +1,15 @@
 header {
-    background: #85dcb8; 
+    background: #17252A; 
     height: 15vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100vw;
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 4em;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: rgb(57, 160, 146);
-    background: #85dcb8; 
+    color: #FEFFFF;
+    background: #17252A; 
 }

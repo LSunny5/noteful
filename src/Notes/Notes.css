@@ -1,0 +1,28 @@
+.allNotes {
+    background: #3AAFA9;
+    height: 85vh;
+    width: 70vw;
+}
+
+.allNotes > h2 {
+    background: #3AAFA9;
+    padding: 10px;
+    color: #17252A;
+}
+
+.allNotes > ul {
+    background: rgb(52, 78, 87);
+    list-style: none;
+    padding: 10px;
+    background: #3AAFA9;
+}
+
+.allNotes > ul > li {
+    background: rgb(52, 78, 87);
+    padding: 10px;
+    font-size: 20px;
+    width: 64vw;
+    border-radius: 15px;
+    margin: 0 8px 8px;
+}
+

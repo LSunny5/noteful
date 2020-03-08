@@ -1,0 +1,33 @@
+.allFolders {
+    background: #2B7A78;
+    width: 30vw;
+}
+
+.allFolders > h2 {
+    padding: 10px;
+    color: #17252A;
+    background: #2B7A78;
+}
+
+.allFolders > li {
+    color: white;
+
+}
+ 
+.folderList {
+    padding: 0;
+    background: #2B7A78;
+    display: flex block;
+    flex-direction: row;
+    
+}
+
+.folderName {
+    list-style: none;
+    padding: 30px;
+    background: #FEFFFF;
+    margin: 0 0 0 20%;
+    font-size: 1.2em;
+    color: #2B7A78;
+    font-weight: bolder;
+}

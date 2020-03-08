@@ -9,7 +9,7 @@ function Header() {
                 <h1>Noteful</h1>
             </Link>
         </header>
-    )
+    );
 }
 
 export default Header;
