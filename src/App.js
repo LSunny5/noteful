@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import dummyStore from './dummy-store';
 
 import Header from './Header/Header';
@@ -9,10 +9,9 @@ import Notes from './Notes/Notes';
 import DisplayNote from './components/DisplayNote/DisplayNote';
 import DisplayNoteFolder from './components/DisplayNoteFolder/DisplayNoteFolder';
 import AddFolder from './components/AddFolder/AddFolder';
-import addNote from './components/AddNote/AddNote';
+import AddNote from './components/AddNote/AddNote';
 
 import { findFolder, findNote, getNotes } from './noteFunctions';
-import AddNote from './components/AddNote/AddNote';
 
 class App extends React.Component {
   state = {
@@ -23,6 +22,26 @@ class App extends React.Component {
   componentDidMount() {
     setTimeout(() => this.setState(dummyStore), 600);
   }
+
+  deleteNote = noteId => {
+    const notesArray = this.state.notes.filter(note => note.id !== noteId);
+    this.setState({notes: notesArray});
+  }
+
+  deleteFolder = (folderNum, noteId) => {
+    const folderArray = this.state.folders.filter(folder => folder.id !== folderNum);
+    this.setState({folders: folderArray});
+
+    // getNotes;
+  }
+
+  addNote = note => {
+    this.setState({ notes: [...this.state.notes, note]});
+  };
+
+  addFolder = folder => {
+    this.setState({folders: [...this.state.folders, folder]});
+  };
 
   renderFolderRoutes() {
     const { notes, folders } = this.state;
@@ -38,6 +57,7 @@ class App extends React.Component {
                 folders={folders}
                 notes={notes}
                 {...routeProps}
+                deleteFolder={this.deleteFolder}
               />
             }
           />
@@ -89,6 +109,7 @@ class App extends React.Component {
                 <Notes
                   {...routeProps}
                   notes={notesForFolder}
+                  deleteNote ={this.deleteNote}
                 />
               );
             }}
@@ -112,7 +133,14 @@ class App extends React.Component {
 
         <Route
           path='/addFolder'
-          component={AddFolder}
+          render= {routeProps => {
+            return (
+              <AddFolder 
+                addFolder={this.addFolder}
+              />
+            )
+          }}
+          //component={AddFolder}
         />
 
         <Route
@@ -122,6 +150,7 @@ class App extends React.Component {
               <AddNote  
                 {...routeProps}
                 folders={folders}
+                addNote={this.addNote}
               />
             )
           }}

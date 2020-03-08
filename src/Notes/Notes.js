@@ -15,6 +15,7 @@ function Notes(props) {
                             id={note.id}
                             name={note.name}
                             modified={note.modified}
+                            deleteNote={props.deleteNote}
                         />
                     </li>
                 )}
@@ -35,7 +36,7 @@ function Notes(props) {
 }
 
 Notes.defaultProps = {
-    notes: []
+    notes: [],    
 }
 
 export default Notes;

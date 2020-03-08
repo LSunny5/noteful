@@ -3,7 +3,21 @@ import './AddFolder.css';
 import NoteForm from '../NoteForm/NoteForm';
 
 class AddFolder extends React.Component {
+    addUserFolder = event => {
+        event.preventDefault();
+
+        let newFolder = {
+            name: this.state.name
+        }
+
+        this.setState(
+            {folders: [...this.state.folders, newFolder]}
+        )
+    }
+
+
     render() {
+        
         return (
             <section className='addFolder'>
                 <h2>Add a Folder</h2>

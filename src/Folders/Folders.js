@@ -23,6 +23,14 @@ function Folders(props) {
                             </span>
                             {folder.name}
                         </NavLink>
+
+                        <button 
+                className="deleteFolder"
+                type='button'
+                onClick={() => props.deleteFolder(folder.id)}
+            >
+                Delete
+            </button>
                     </li>
                 )}
             </ul>
@@ -37,6 +45,7 @@ function Folders(props) {
                     + Add Folder
                 </NavButton>
             </div>
+            
         </section>
     );
 }

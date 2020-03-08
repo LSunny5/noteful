@@ -25,6 +25,7 @@ function Note(props) {
             <button 
                 className="deleteNote"
                 type='button'
+                onClick={() => props.deleteNote(props.id)}
             >
                 Delete
             </button>
@@ -33,7 +34,7 @@ function Note(props) {
 }
 
 Note.defaultProps = {
-    notes: [], 
+    notes: []
 }
 
 export default Note;

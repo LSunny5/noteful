@@ -8,7 +8,7 @@ function DisplayNoteFolder (props) {
             <NavButton
                 tag='button'
                 role='link'
-                onClick={() => props.history.goBack()}
+                onClick={props.history.goBack}
                 className="backButton"
             >
                 Go Back

@@ -49,7 +49,8 @@ class AddNote extends React.Component {
                     </div>
 
                     <div className="buttonBoxSubmit">
-                        <button type='submit'>
+                        <button 
+                            type='submit'>
                             Add Note
                         </button>
                     </div>
