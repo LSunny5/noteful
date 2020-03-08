@@ -21,6 +21,8 @@ class AddNote extends React.Component {
                         <input 
                             type='text' 
                             id='noteName'
+                            autoFocus
+                            required
                         />
                     </div>
 
@@ -28,15 +30,29 @@ class AddNote extends React.Component {
                         <label htmlFor='noteContent'>
                             Content
                         </label>
-                        <textarea id='noteContent' />
+                        <textarea 
+                            id='noteContent'
+                            required
+                        />
                     </div>
 
                     <div className='text'>
                         <label htmlFor='chooseFolder'>
                             Folder
                         </label>
-                        <select id='chooseFolder'>
-                            <option value={null}>Please choose one</option>
+                        <select 
+                            id='chooseFolder'
+                            required
+                        >
+                            <option 
+                                id='nullValue'
+                                value={null}
+                                disabled
+                                selected
+                                hidden
+                            >
+                                Please select one...
+                            </option>
                             {folders.map(folder=> 
                                 <option 
                                     key={folder.id} 
@@ -48,9 +64,11 @@ class AddNote extends React.Component {
                         </select>
                     </div>
 
-                    <div className="buttonBoxSubmit">
+                    <div className="buttonBox addNoteBox">
                         <button 
-                            type='submit'>
+                            type='submit'
+                            className="submitButton"
+                        >
                             Add Note
                         </button>
                     </div>

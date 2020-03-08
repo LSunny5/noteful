@@ -1,0 +1,45 @@
+.submitButton {
+    background: rgb(255, 209, 83);
+    border: none;
+    padding: 8px;
+}
+
+.addFolderBox {
+    margin: 30px auto;
+    border: 2px solid black;
+    width: 60%;
+    background: #F3FFFF;
+    border-radius: 50px;
+    padding: 20px;
+}
+
+.addFolderBox > h2 {
+    font-size: 3em;
+    background: #F3FFFF;
+    margin: 10px;
+}
+
+.noteForm, .noteForm > .text, .text > * {
+    background: #F3FFFF;
+}
+
+label {
+    font-weight: bold;
+    margin: 20px;
+    font-size: 1.5em;
+}
+
+.text {
+    margin: 10%;
+}
+
+#folderName {
+    border-bottom: 3px solid black;
+    text-align: left;
+    font-size: 1.5em;
+}
+
+.addFolderBox > .buttonBox {
+    margin: 50px;
+
+}

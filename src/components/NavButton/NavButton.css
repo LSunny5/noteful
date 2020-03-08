@@ -1,0 +1,42 @@
+.backButton {
+    margin: 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    border: double 5px black;
+    vertical-align: middle;
+    overflow: hidden;
+    transition: 0.6s;
+    background: #Feffff;
+}
+
+.backButton:hover {
+    -webkit-transform: rotateY(360deg);
+    -ms-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+}
+
+.buttonBox{
+    width: 10em;
+    margin: 20px auto;
+    background: rgb(255, 209, 83);
+    border-radius: 30px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    height: 2.5em;
+    padding: 6px;
+}
+
+.addButton {
+    background: rgb(255, 209, 83);
+    color: black;
+    margin: auto;
+    
+}
+
+
+.addButton:hover {
+    background: orange;
+}

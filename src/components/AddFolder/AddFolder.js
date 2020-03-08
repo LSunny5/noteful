@@ -3,25 +3,31 @@ import './AddFolder.css';
 import NoteForm from '../NoteForm/NoteForm';
 
 class AddFolder extends React.Component {
-    addUserFolder = event => {
-        event.preventDefault();
+    constructor (props) {
+        super (props);
+        this.state = {value: ''};
 
-        let newFolder = {
-            name: this.state.name
-        }
-
-        this.setState(
-            {folders: [...this.state.folders, newFolder]}
-        )
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        alert('folder name is ' + this.state.value);
+    }
 
     render() {
-        
+        //let newFolder= NoteForm.folderName.value();
         return (
-            <section className='addFolder'>
+            <section className='addFolderBox'>
                 <h2>Add a Folder</h2>
-                <NoteForm>
+                <NoteForm 
+                    
+                >
                     <div className='text'>
                         <label htmlFor='folderName'>
                             Name
@@ -29,11 +35,17 @@ class AddFolder extends React.Component {
                         <input 
                             type='text'
                             id='folderName'
+                            value={this.state.value}
+                            onChange={this.handleChange}
+                            autoFocus
                         />
                     </div>
 
-                    <div className='buttonBoxFolder'>
-                        <button type='submit'>
+                    <div className='buttonBox'>
+                        <button 
+                            type='submit'
+                            className="submitButton"
+                        >
                             Add Folder
                         </button>
                     </div>

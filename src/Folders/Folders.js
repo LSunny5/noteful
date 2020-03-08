@@ -18,34 +18,34 @@ function Folders(props) {
                             className="folderLink"
                             to={`/folder/${folder.id}`}
                         >
-                            <span className='numberNotes'>
-                                {numNotes(props.notes, folder.id)}
-                            </span>
-                            {folder.name}
+                            <div className='nameBox'> 
+                                {folder.name}
+                                <span className='numberNotes'>
+                                    {' ('}{numNotes(props.notes, folder.id)})
+                                </span>
+                            </div>
+                            <button
+                                className="deleteFolderButton"
+                                type='button'
+                                onClick={() => props.deleteFolder(folder.id)}
+                            >
+                                Delete
+                        </button>
                         </NavLink>
-
-                        <button 
-                className="deleteFolder"
-                type='button'
-                onClick={() => props.deleteFolder(folder.id)}
-            >
-                Delete
-            </button>
                     </li>
                 )}
             </ul>
-
-            <div className="buttonBoxFolder">
+            <div className="buttonBox">
                 <NavButton
                     tag={Link}
                     to="/addFolder"
                     type='button'
-                    className='addFolderButton'
+                    className='addButton'
                 >
                     + Add Folder
                 </NavButton>
             </div>
-            
+
         </section>
     );
 }

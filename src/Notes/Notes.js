@@ -19,18 +19,18 @@ function Notes(props) {
                         />
                     </li>
                 )}
+    
+                <div className='buttonBox'>
+                    <NavButton 
+                        tag={Link}
+                        to='/addNote'
+                        type='button'
+                        className='addButton'
+                    >
+                        + Note
+                    </NavButton>
+                </div>
             </ul>
-
-            <div className='buttonBoxNotes'>
-                <NavButton 
-                    tag={Link}
-                    to='/addNote'
-                    type='button'
-                    className='addNoteButton'
-                >
-                    + Note
-                </NavButton>
-            </div>
         </section>
     )
 }

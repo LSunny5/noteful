@@ -1,0 +1,39 @@
+.noteDesc > p , .noteDesc{
+    background: #F3FFFF;
+    width: 80%;
+    margin: 0 auto 10px;
+    text-align: left;
+    padding: 10px;
+    border-radius: 0 0 80px 80px;
+}
+
+.noteDesc{
+    border-bottom: 3px solid black;
+    border-right: 3px solid black;
+    border-left: 3px solid black;
+}
+
+.displayNote{
+    height: 82.75vh;
+    width: 100%;
+    background: #3AAFA9;
+    color: black;
+}
+
+.displayNote > .note {
+    width: 80%;
+    margin: 20px auto 0;
+    padding: 30px;
+    border-top: 3px solid black;
+    border-right: 3px solid black;
+    border-left: 3px solid black;
+    border-radius: 80px 80px 0 0;
+}
+
+.displayNote > .note > a:hover {
+    color: black;
+}
+
+.displayNote > .note > a {
+    font-size: 1.5em;
+}

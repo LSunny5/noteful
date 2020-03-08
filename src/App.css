@@ -17,3 +17,9 @@ main {
     flex-direction: row;
    
 }
+
+.noteList {
+    background: #3AAFA9;
+    height: 85vh;
+    width: 100%;
+}

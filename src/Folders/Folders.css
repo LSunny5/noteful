@@ -1,6 +1,5 @@
 .allFolders {
     background: #2B7A78;
-    width: 30vw;
 }
 
 .allFolders > h2 {
@@ -16,18 +15,61 @@
  
 .folderList {
     padding: 0;
-    background: #2B7A78;
-    display: flex block;
-    flex-direction: row;
-    
+   
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 22vw;
 }
 
 .folderName {
     list-style: none;
-    padding: 30px;
-    background: #FEFFFF;
-    margin: 0 0 0 20%;
+    background: #2B7A78;
     font-size: 1.2em;
+    width: 90%;
+    
+
     color: #2B7A78;
     font-weight: bolder;
+    display: flex;
+    align-items: center;
+}
+
+.folderLink {
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.folderLink:hover{
+    color: rgb(156, 103, 5);
+}
+
+.folderLink.active, .folderLink:hover, .folderLink:hover > .nameBox, 
+.folderLink:hover > .nameBox > .numberNotes, 
+.folderLink.active > .nameBox, .folderLink.active > .nameBox > .numberNotes {
+    background: #3AAFA9;
+}
+
+.numberNotes, .nameBox {
+    background: #FEFFFF;
+}
+
+.deleteFolderButton {
+    background: black;
+    color: white;
+    border-radius: 30px;
+    height: 3em;
+    margin: 10px;
+}
+
+.deleteFolderButton:hover {
+    background: red;
+}
+
+.deleteFolderButton:active {
+    color: red;
 }

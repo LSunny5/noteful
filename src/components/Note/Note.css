@@ -1,13 +1,15 @@
+.note {
+    background: #FEFFFF;
+
+}
 
 .noteTitle {
     background:  #FEFFFF;
     padding: 10px;
 }
 
-.noteModifiedDate {
-    background: #FEFFFF;
-    padding: 5px 5px 5px 10px;
-    color: #2B7A78;
+.note > a:hover, .note:hover{
+    color: rgb(180, 79, 51);
 }
 
 a {
@@ -18,14 +20,43 @@ a {
 .date {
     background: #FEFFFF;
     color: #2B7A78;
+
 }
 
-.note {
-        background: #FEFFFF;
-    
+.noteModifiedDate {
+    background: #FEFFFF;
+    padding: 5px 5px 5px 10px;
+    color: #2B7A78;
+    font-size: 0.6em;
 }
 
 .deleteNote {
     background: #2E9CCA;
     margin: 5px;
+}
+
+.deleteNoteButton {
+    margin: 10px;
+    width: 6em;
+    height: 2em;
+    background: black;
+    color: white;
+    border-radius: 30px;
+}
+
+.deleteNoteButton:hover {
+    background: red;
+}
+
+.deleteNoteButton:active {
+    color: red;
+}
+
+.allNotes > .buttonBox {
+    margin: 10px 30px;
+}
+
+
+.allNotes > ul {
+    margin: 0;
 }

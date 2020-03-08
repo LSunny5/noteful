@@ -39,9 +39,11 @@ class App extends React.Component {
     this.setState({ notes: [...this.state.notes, note]});
   };
 
-  addFolder = folder => {
-    this.setState({folders: [...this.state.folders, folder]});
+  addFolder = newFolder => {
+    this.setState({folders: [...this.state.folders, newFolder]});
+    //this.setState({folders: this.state.folders.concat(newFolder)})
   };
+  
 
   renderFolderRoutes() {
     const { notes, folders } = this.state;
@@ -117,7 +119,7 @@ class App extends React.Component {
         ))}
         
         <Route
-          path="/note/:noteId"
+          path='/note/:noteId'
           render={routeProps => {
             const { noteId } = routeProps.match.params;
             const note = findNote(notes, noteId);
@@ -126,6 +128,7 @@ class App extends React.Component {
               <DisplayNote 
                 {...routeProps} 
                 note={note} 
+                deleteNote ={this.deleteNote}
               />
             );
           }}

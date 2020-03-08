@@ -9,6 +9,7 @@ function DisplayNote(props) {
                 id={props.note.id}
                 name={props.note.name}
                 modified={props.note.modified}
+                deleteNote={props.deleteNote}
             />
             <div className="noteDesc">
                 {props.note.content.split(/\n \r|\n/).map((paragraph, index) =>

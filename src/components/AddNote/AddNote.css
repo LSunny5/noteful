@@ -1,0 +1,51 @@
+.addNote {
+    width: 50%;
+    margin: 30px auto;
+    border: 3px solid black;
+    border-radius: 50px;
+    padding: 20px;
+    background: #F3FFFF;
+}
+
+.addNote > h2 {
+    font-size: 3em;
+    background: #F3FFFF;
+    margin: 10px;
+}
+
+#noteName {
+    font-size: 1.5em;
+    border-bottom: 2px solid black;
+    text-align: left;
+}
+
+#noteContent {
+    font-size: 1.2em;
+    text-align: left;
+    width: 65%;
+    height: 15vh;
+}
+
+.text * {
+    vertical-align: middle;
+}
+
+#chooseFolder {
+    font-size: 1.5em;
+    border-bottom: 2px solid black;
+    width: 65%;
+}
+
+#chooseFolder > option {
+    background: white;
+    color: black;
+}
+
+
+#chooseFolder:disabled {
+
+    
+
+    
+color: gray;
+}
