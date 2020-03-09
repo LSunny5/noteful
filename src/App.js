@@ -31,19 +31,31 @@ class App extends React.Component {
   deleteFolder = (folderNum, noteId) => {
     const folderArray = this.state.folders.filter(folder => folder.id !== folderNum);
     this.setState({folders: folderArray});
-
+    
     // getNotes;
   }
+
+
+
+
+
 
   addNote = note => {
     this.setState({ notes: [...this.state.notes, note]});
   };
 
-  addFolder = newFolder => {
+  addNewFolder = newFolder => {
+
     this.setState({folders: [...this.state.folders, newFolder]});
+    console.log('folder added')
     //this.setState({folders: this.state.folders.concat(newFolder)})
   };
   
+
+
+
+
+
 
   renderFolderRoutes() {
     const { notes, folders } = this.state;
@@ -139,7 +151,7 @@ class App extends React.Component {
           render= {routeProps => {
             return (
               <AddFolder 
-                addFolder={this.addFolder}
+                addNewFolder={this.addNewFolder}
               />
             )
           }}

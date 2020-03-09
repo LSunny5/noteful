@@ -2,31 +2,19 @@ import React from 'react';
 import './AddFolder.css';
 import NoteForm from '../NoteForm/NoteForm';
 
-class AddFolder extends React.Component {
-    constructor (props) {
-        super (props);
-        this.state = {value: ''};
+//class AddFolder extends React.Component {
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    function AddFolder (props) {
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
-    }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        alert('folder name is ' + this.state.value);
-    }
-
-    render() {
-        //let newFolder= NoteForm.folderName.value();
+    //render() {
+        
         return (
             <section className='addFolderBox'>
                 <h2>Add a Folder</h2>
                 <NoteForm 
-                    
+                    onSubmit={() => props.addNewFolder(this.NoteForm.folderName.value)}
+
                 >
                     <div className='text'>
                         <label htmlFor='folderName'>
@@ -35,8 +23,9 @@ class AddFolder extends React.Component {
                         <input 
                             type='text'
                             id='folderName'
-                            value={this.state.value}
-                            onChange={this.handleChange}
+                            
+
+                            placeholder="Please enter folder name..."
                             autoFocus
                         />
                     </div>
@@ -45,14 +34,14 @@ class AddFolder extends React.Component {
                         <button 
                             type='submit'
                             className="submitButton"
-                        >
-                            Add Folder
+                    >
+                        Add Folder
                         </button>
                     </div>
                 </NoteForm>
             </section>
         )
-    }
+  //  }
 }
 
 export default AddFolder
