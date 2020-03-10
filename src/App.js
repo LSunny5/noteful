@@ -8,8 +8,12 @@ import Folders from './Folders/Folders';
 import Notes from './Notes/Notes';
 import DisplayNote from './components/DisplayNote/DisplayNote';
 import DisplayNoteFolder from './components/DisplayNoteFolder/DisplayNoteFolder';
+import NotefulContext from './NotefulContext';
+import config from './config';
+
 import AddFolder from './components/AddFolder/AddFolder';
 import AddNote from './components/AddNote/AddNote';
+
 
 import { findFolder, findNote, getNotes } from './noteFunctions';
 
@@ -23,50 +27,47 @@ class App extends React.Component {
     setTimeout(() => this.setState(dummyStore), 600);
   }
 
-  deleteNote = noteId => {
+  handleDeleteNote = noteId => {
     const notesArray = this.state.notes.filter(note => note.id !== noteId);
-    this.setState({notes: notesArray});
+    this.setState({ notes: notesArray });
   }
 
-  deleteFolder = (folderNum, noteId) => {
+
+
+
+
+  handleDeleteFolder = (folderNum, noteId) => {
     const folderArray = this.state.folders.filter(folder => folder.id !== folderNum);
-    this.setState({folders: folderArray});
-    
+    this.setState({ folders: folderArray });
+
     // getNotes;
   }
 
-
-
-
-
-
-  addNote = note => {
-    this.setState({ notes: [...this.state.notes, note]});
-  };
-
-  addNewFolder = newFolder => {
-
-    this.setState({folders: [...this.state.folders, newFolder]});
-    console.log('folder added')
-    //this.setState({folders: this.state.folders.concat(newFolder)})
-  };
+  /*Add later
   
-
-
-
-
-
+    addNote = note => {
+      this.setState({ notes: [...this.state.notes, note]});
+    };
+  
+    addNewFolder = newFolder => {
+  
+      this.setState({folders: [...this.state.folders, newFolder]});
+      console.log('folder added')
+      //this.setState({folders: this.state.folders.concat(newFolder)})
+    };
+    
+  */
 
   renderFolderRoutes() {
     const { notes, folders } = this.state;
     return (
       <>
-        {['/', '/folder/:folderId'].map(path => 
-          <Route  
+        {['/', '/folder/:folderId'].map(path =>
+          <Route
             key={path}
             path={path}
             exact
-            render= {routeProps => 
+            render={routeProps =>
               <Folders
                 folders={folders}
                 notes={notes}
@@ -79,8 +80,8 @@ class App extends React.Component {
 
         <Route
           path='/note/:noteId'
-          render= {routeProps => {
-            const {noteId} = routeProps.match.params;
+          render={routeProps => {
+            const { noteId } = routeProps.match.params;
             const note = findNote(notes, noteId) || {};
             const folder = findFolder(folders, note.folderId);
 
@@ -93,12 +94,12 @@ class App extends React.Component {
           }}
         />
 
-        <Route 
+        <Route
           path='/addFolder'
           component={DisplayNoteFolder}
         />
 
-        <Route  
+        <Route
           path='/addNote'
           component={DisplayNoteFolder}
         />
@@ -123,13 +124,13 @@ class App extends React.Component {
                 <Notes
                   {...routeProps}
                   notes={notesForFolder}
-                  deleteNote ={this.deleteNote}
+                  deleteNote={this.deleteNote}
                 />
               );
             }}
           />
         ))}
-        
+
         <Route
           path='/note/:noteId'
           render={routeProps => {
@@ -137,37 +138,12 @@ class App extends React.Component {
             const note = findNote(notes, noteId);
 
             return (
-              <DisplayNote 
-                {...routeProps} 
-                note={note} 
-                deleteNote ={this.deleteNote}
+              <DisplayNote
+                {...routeProps}
+                note={note}
+                deleteNote={this.deleteNote}
               />
             );
-          }}
-        />
-
-        <Route
-          path='/addFolder'
-          render= {routeProps => {
-            return (
-              <AddFolder 
-                addNewFolder={this.addNewFolder}
-              />
-            )
-          }}
-          //component={AddFolder}
-        />
-
-        <Route
-          path='/addNote'
-          render={ routeProps => {
-            return (
-              <AddNote  
-                {...routeProps}
-                folders={folders}
-                addNote={this.addNote}
-              />
-            )
           }}
         />
       </>
@@ -175,18 +151,27 @@ class App extends React.Component {
   }
 
   render() {
+    const contextValue = {
+      notes: this.state.notes,
+      folders: this.state.folders,
+      deleteNote: this.handleDeleteNote
+    };
+
     return (
-      <div className='App'>
-        <Header />
-        <main>
-          <nav className="folderList">
-            {this.renderFolderRoutes()}
-          </nav>
-          <section className="noteList">
-            {this.renderNoteRoutes()}
-          </section>
-        </main>
-      </div>
+      <NotefulContext.Provider value={contextValue}>
+        <div className='App'>
+          <Header />
+          <main>
+            <nav className="folderList">
+              {this.renderFolderRoutes()}
+            </nav>
+            <section className="noteList">
+              {this.renderNoteRoutes()}
+            </section>
+          </main>
+        </div>
+      </NotefulContext.Provider>
+
     );
   }
 }
