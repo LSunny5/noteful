@@ -20,7 +20,7 @@ class Note extends React.Component {
     }
 
     render() {
-        const { modified, name, id } = this.context;
+        const { modified, name, id } = this.props;
         return (
             <div className="note">
                 <Link to={`/note/${id}`}>
