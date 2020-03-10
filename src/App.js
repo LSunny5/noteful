@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
-import dummyStore from './dummy-store';
+//import dummyStore from './dummy-store';
 
 import Header from './Header/Header';
 import Folders from './Folders/Folders';
@@ -14,20 +14,38 @@ import config from './config';
 import AddFolder from './components/AddFolder/AddFolder';
 import AddNote from './components/AddNote/AddNote';
 
-
-import { findFolder, findNote, getNotes } from './noteFunctions';
-
 class App extends React.Component {
+  static contextType = NotefulContext;
+
   state = {
     notes: [],
     folders: [],
   }
 
   componentDidMount() {
-    setTimeout(() => this.setState(dummyStore), 600);
+    //use for using dummyStore
+    //setTimeout(() => this.setState(dummyStore), 600);
+
+    Promise.all([
+      fetch(`${config.APIEndpoint}/notes`), 
+      fetch(`${config.APIEndpoint}/folders`), 
+    ])
+    .then(([notesResponse, foldersResponse]) => {
+      if (!notesResponse.ok)
+        return notesResponse.json().then(event => Promise.reject(event));
+      if (!foldersResponse.ok)
+        return notesResponse.json().then(event => Promise.reject(event));
+      return Promise.all([notesResponse.json(), foldersResponse.json()]);
+    })
+    .then(([notes, folders]) => {
+      this.setState({notes, folders});
+    })
+    .catch (error => {
+      console.error({error});
+    });
   }
 
-  handleDeleteNote = noteId => {
+  deleteNote = noteId => {
     const notesArray = this.state.notes.filter(note => note.id !== noteId);
     this.setState({ notes: notesArray });
   }
@@ -36,6 +54,11 @@ class App extends React.Component {
 
 
 
+
+
+
+
+  //do later
   handleDeleteFolder = (folderNum, noteId) => {
     const folderArray = this.state.folders.filter(folder => folder.id !== folderNum);
     this.setState({ folders: folderArray });
@@ -57,6 +80,11 @@ class App extends React.Component {
     };
     
   */
+
+
+
+
+  
 
   renderFolderRoutes() {
     const { notes, folders } = this.state;
@@ -113,7 +141,7 @@ class App extends React.Component {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.deleteNote
     };
 
     return (

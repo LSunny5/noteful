@@ -11,12 +11,29 @@ class Note extends React.Component {
     }
     static contextType = NotefulContext;
 
-    handleClickDelete = e => {
-        e.preventDefault();
+    handleClickDelete = event => {
+        event.preventDefault();
+        const noteId = this.props.id;
         
         //fetch code here for note
-
-
+        fetch(`${config.APIEndpoint}/notes/${noteId}`, {
+            method: 'DELETE', 
+            headers: {
+                'content-type': 'application/json'
+            }, 
+        })
+        .then( response => {
+            if (!response.ok)
+                return response.json().then(error => Promise.reject(error))
+            return response.json()
+        })
+        .then( data => {
+            this.context.deleteNote(noteId)
+            this.props.deleteNote(noteId) //parent performs behavior also
+        })
+        .catch (error => {
+            console.error({error})
+        })
     }
 
     render() {
