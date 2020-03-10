@@ -62,36 +62,18 @@ class App extends React.Component {
     const { notes, folders } = this.state;
     return (
       <>
-        {['/', '/folder/:folderId'].map(path =>
+        {['/', '/folder/:folderId'].map(path => (
           <Route
             key={path}
             path={path}
             exact
-            render={routeProps =>
-              <Folders
-                folders={folders}
-                notes={notes}
-                {...routeProps}
-                deleteFolder={this.deleteFolder}
-              />
-            }
+            component = { Folders }
           />
-        )}
+        ))}
 
         <Route
           path='/note/:noteId'
-          render={routeProps => {
-            const { noteId } = routeProps.match.params;
-            const note = findNote(notes, noteId) || {};
-            const folder = findFolder(folders, note.folderId);
-
-            return (
-              <DisplayNoteFolder
-                {...routeProps}
-                folder={folder}
-              />
-            )
-          }}
+          component={DisplayNoteFolder}
         />
 
         <Route
@@ -108,7 +90,6 @@ class App extends React.Component {
   }
 
   renderNoteRoutes() {
-    const { notes, folders } = this.state;
     return (
       <>
         {['/', '/folder/:folderId'].map(path => (
@@ -116,35 +97,13 @@ class App extends React.Component {
             key={path}
             path={path}
             exact
-            render={routeProps => {
-              const { folderId } = routeProps.match.params;
-              const notesForFolder = getNotes(notes, folderId);
-
-              return (
-                <Notes
-                  {...routeProps}
-                  notes={notesForFolder}
-                  deleteNote={this.deleteNote}
-                />
-              );
-            }}
+            component={Notes}
           />
         ))}
 
         <Route
           path='/note/:noteId'
-          render={routeProps => {
-            const { noteId } = routeProps.match.params;
-            const note = findNote(notes, noteId);
-
-            return (
-              <DisplayNote
-                {...routeProps}
-                note={note}
-                deleteNote={this.deleteNote}
-              />
-            );
-          }}
+          component={DisplayNote}
         />
       </>
     );
@@ -171,7 +130,6 @@ class App extends React.Component {
           </main>
         </div>
       </NotefulContext.Provider>
-
     );
   }
 }
