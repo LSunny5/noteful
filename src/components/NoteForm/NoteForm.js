@@ -6,7 +6,7 @@ function NoteForm(props) {
     return (
         <form
             className={['noteForm', className].join(' ')}
-            //action='#'
+            action='#'
             {...otherProps}
         />
     )
