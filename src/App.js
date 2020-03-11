@@ -8,11 +8,13 @@ import Folders from './Folders/Folders';
 import Notes from './Notes/Notes';
 import DisplayNote from './components/DisplayNote/DisplayNote';
 import DisplayNoteFolder from './components/DisplayNoteFolder/DisplayNoteFolder';
+import AddFolder from './components/AddFolder/AddFolder';
+import AddNote from './components/AddNote/AddNote';
+
 import NotefulContext from './NotefulContext';
 import config from './config';
 
-import AddFolder from './components/AddFolder/AddFolder';
-import AddNote from './components/AddNote/AddNote';
+
 
 class App extends React.Component {
   static contextType = NotefulContext;
@@ -27,22 +29,22 @@ class App extends React.Component {
     //setTimeout(() => this.setState(dummyStore), 600);
 
     Promise.all([
-      fetch(`${config.APIEndpoint}/notes`), 
-      fetch(`${config.APIEndpoint}/folders`), 
+      fetch(`${config.APIEndpoint}/notes`),
+      fetch(`${config.APIEndpoint}/folders`),
     ])
-    .then(([notesResponse, foldersResponse]) => {
-      if (!notesResponse.ok)
-        return notesResponse.json().then(event => Promise.reject(event));
-      if (!foldersResponse.ok)
-        return notesResponse.json().then(event => Promise.reject(event));
-      return Promise.all([notesResponse.json(), foldersResponse.json()]);
-    })
-    .then(([notes, folders]) => {
-      this.setState({notes, folders});
-    })
-    .catch (error => {
-      console.error({error});
-    });
+      .then(([notesResponse, foldersResponse]) => {
+        if (!notesResponse.ok)
+          return notesResponse.json().then(event => Promise.reject(event));
+        if (!foldersResponse.ok)
+          return notesResponse.json().then(event => Promise.reject(event));
+        return Promise.all([notesResponse.json(), foldersResponse.json()]);
+      })
+      .then(([notes, folders]) => {
+        this.setState({ notes, folders });
+      })
+      .catch(error => {
+        console.error({ error });
+      });
   }
 
   deleteNote = noteId => {
@@ -66,25 +68,31 @@ class App extends React.Component {
     // getNotes;
   }
 
-  /*Add later
-  
-    addNote = note => {
-      this.setState({ notes: [...this.state.notes, note]});
-    };
-  
-    addNewFolder = newFolder => {
-  
-      this.setState({folders: [...this.state.folders, newFolder]});
-      console.log('folder added')
-      //this.setState({folders: this.state.folders.concat(newFolder)})
-    };
-    
-  */
 
 
 
 
-  
+
+
+
+  addNewFolder = newFolder => {
+    this.setState({ folders: [...this.state.folders, newFolder] });
+    console.log('folder added')
+    //this.setState({folders: this.state.folders.concat(newFolder)})
+  };
+
+  addNewNote = note => {
+    this.setState({ notes: [...this.state.notes, note] });
+  };
+
+ 
+
+
+
+
+
+
+
 
   renderFolderRoutes() {
     const { notes, folders } = this.state;
@@ -95,7 +103,7 @@ class App extends React.Component {
             key={path}
             path={path}
             exact
-            component = { Folders }
+            component={Folders}
           />
         ))}
 
@@ -133,6 +141,15 @@ class App extends React.Component {
           path='/note/:noteId'
           component={DisplayNote}
         />
+        <Route
+          path='/addFolder'
+          component={AddFolder}
+        />
+
+        <Route
+          path='/addNote'
+          component={AddNote}
+        />
       </>
     );
   }
@@ -141,7 +158,9 @@ class App extends React.Component {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.deleteNote
+      deleteNote: this.deleteNote,
+      addNewFolder: this.addNewFolder, 
+      addNewNote: this.addNewNote
     };
 
     return (
