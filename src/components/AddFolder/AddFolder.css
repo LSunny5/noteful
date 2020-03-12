@@ -1,9 +1,3 @@
-.submitButton {
-    background: rgb(255, 209, 83);
-    border: none;
-    padding: 8px;
-}
-
 .addFolderBox {
     margin: 30px auto;
     border: 2px solid black;
@@ -25,21 +19,76 @@
 
 label {
     font-weight: bold;
-    margin: 20px;
     font-size: 1.5em;
 }
 
 .text {
-    margin: 10%;
+    margin: 5%;
 }
 
 #folderName {
     border-bottom: 3px solid black;
     text-align: left;
     font-size: 1.5em;
+    width: 90%;
+    margin: 10% 5% 0 ;
 }
 
 .addFolderBox > .buttonBox {
     margin: 50px;
+}
 
+.addFolderbuttonBox {
+    background: white;
+    padding: 15px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.addFolderButton {
+    padding: 10px 50px;
+    margin: 0 30px;
+    background: rgb(255, 209, 83);
+    border-radius: 50px;
+    font-size: 14px;
+    width: 150px;
+    font-weight: bold;
+}
+
+.addFolderButton:disabled {
+    background: lightgray;
+}
+
+.addFolderButton:hover:enabled {
+    border: 3px solid darkorange;
+    background: orange;
+}
+
+.addFolderButton:active {
+    border: 3px solid orange;
+    background: orange;
+    font-size: 18px;
+}
+
+.cancelButton {
+    padding: 10px 50px;
+    margin: 0 30px;
+    background: lightcoral;
+    border-radius: 50px;
+    font-size: 14px;
+    width: 150px;
+    font-weight: bold;
+}
+
+.cancelButton:hover {
+    border: 3px solid darkred;
+    background: red;
+}
+
+.cancelButton:active {
+    border: 3px solid red;
+    background: red;
+    font-size: 18px;
 }

@@ -4,14 +4,43 @@ import { NavLink, Link } from 'react-router-dom';
 import NavButton from '../components/NavButton/NavButton';
 import { numNotes } from '../noteFunctions';
 import NotefulContext from '../NotefulContext';
+import config from '../config';
+import { getNotes } from '../noteFunctions';
+import PropTypes from 'prop-types';
 
 class Folders extends React.Component {
     static contextType = NotefulContext;
 
+
+    handleDelete = folder => {
+        //event.preventDefault();
+        const folderId = folder;
+        const notesInFolder = getNotes(folder);
+
+        fetch(`${config.APIEndpoint}/folders/${folderId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+            .then(response => {
+                if (!response.ok)
+                    return response.json().then(error => { throw error })
+                return response.json()
+            })
+            .then(data => {
+                this.context.deleteFolder(folderId)
+                this.context.deleteNote(notesInFolder)
+            })
+            .catch(error => {
+                console.error({ error })
+            })
+    }
+
     render() {
         const {
             folders = [],
-            notes = []
+            notes = [],
         } = this.context;
 
         return (
@@ -33,33 +62,38 @@ class Folders extends React.Component {
                                         {' ('}{numNotes(notes, folder.id)})
                                     </span>
                                 </div>
+
                                 <button
                                     className="deleteFolderButton"
                                     type='button'
-                                //implement later..
+                                    onClick={() => this.handleDelete(folder.id)}
+                                //implement note removal later..
+
+                                //deleteFolder={props.deleteFolder} *removed to use context instead
 
 
 
 
 
-                                //onClick={() => props.deleteFolder(folder.id)}
+
                                 >
                                     Delete
-                            </button>
+                                </button>
+
+
+
                             </NavLink>
                         </li>
                     )}
                 </ul>
-                <div className="buttonBox">
-                    <NavButton
-                        tag={Link}
-                        to="/addFolder"
-                        type='button'
-                        className='addButton'
-                    >
-                        + Add Folder
-                    </NavButton>
-                </div>
+                <NavButton
+                    tag={Link}
+                    to="/addFolder"
+                    type='button'
+                    className='addFolderButtonMain'
+                >
+                    + Add Folder
+                </NavButton>
             </section>
         );
     }

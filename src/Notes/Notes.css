@@ -1,19 +1,22 @@
 .allNotes {
     background: #3AAFA9;
-
-    width: 76vw;
+    padding: 0 auto 50px;
+    width: 100%;
 }
 
 .allNotes > h2 {
     background: #3AAFA9;
     padding: 10px;
     color: #17252A;
+    background: #3AAFA9;
+    color: darkslateblue;
+    width: 100%;
 }
 
 .allNotes > ul {
     background: rgb(52, 78, 87);
     list-style: none;
-    padding: 10px;
+    padding: 10px auto;
     background: #3AAFA9;
 }
 
@@ -28,4 +31,10 @@
 
 .allNotes> ul > li:hover {
     background: orange;
+}
+
+.buttonBox {
+    padding: 20px;
+    text-align: center;
+    min-height: 10vh;
 }

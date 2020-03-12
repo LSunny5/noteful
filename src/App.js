@@ -47,9 +47,14 @@ class App extends React.Component {
       });
   }
 
+
+
+
+
   deleteNote = noteId => {
     const notesArray = this.state.notes.filter(note => note.id !== noteId);
     this.setState({ notes: notesArray });
+    //this.props.history.push('/')
   }
 
 
@@ -61,11 +66,14 @@ class App extends React.Component {
 
 
   //do later
-  handleDeleteFolder = (folderNum, noteId) => {
-    const folderArray = this.state.folders.filter(folder => folder.id !== folderNum);
+  deleteFolder = folderId => {
+    const folderArray = this.state.folders.filter(folder => folder.id !== folderId);
     this.setState({ folders: folderArray });
 
-    // getNotes;
+    // delete the notes also;
+
+
+
   }
 
 
@@ -77,15 +85,17 @@ class App extends React.Component {
 
   addNewFolder = newFolder => {
     this.setState({ folders: [...this.state.folders, newFolder] });
-    console.log('folder added')
-    //this.setState({folders: this.state.folders.concat(newFolder)})
+
+
+
+
   };
 
   addNewNote = note => {
     this.setState({ notes: [...this.state.notes, note] });
   };
 
- 
+
 
 
 
@@ -95,7 +105,7 @@ class App extends React.Component {
 
 
   renderFolderRoutes() {
-    const { notes, folders } = this.state;
+    // const { notes, folders } = this.state;
     return (
       <>
         {['/', '/folder/:folderId'].map(path => (
@@ -159,8 +169,9 @@ class App extends React.Component {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.deleteNote,
-      addNewFolder: this.addNewFolder, 
-      addNewNote: this.addNewNote
+      addNewFolder: this.addNewFolder,
+      addNewNote: this.addNewNote,
+      deleteFolder: this.deleteFolder,
     };
 
     return (
@@ -168,17 +179,21 @@ class App extends React.Component {
         <div className='App'>
           <Header />
           <main>
-            <nav className="folderList">
-              {this.renderFolderRoutes()}
-            </nav>
-            <section className="noteList">
-              {this.renderNoteRoutes()}
-            </section>
+            <div className="container1">
+              <nav className="folderList">
+                {this.renderFolderRoutes()}
+              </nav>
+            </div>
+            <div className="container2">
+              <section className="noteList">
+                {this.renderNoteRoutes()}
+              </section>
+            </div>
           </main>
         </div>
       </NotefulContext.Provider>
-    );
-  }
-}
-
+        );
+      }
+    }
+    
 export default App;

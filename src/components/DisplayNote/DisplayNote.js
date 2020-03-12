@@ -14,7 +14,7 @@ class DisplayNote extends React.Component {
 
     //Implement delete button on the note page, if delete is successful, redirect to / path.
     handleDeleteNote = noteId => {
-        this.props.history.push('/')
+        this.context.history.push('/')
     }
 
     render() {

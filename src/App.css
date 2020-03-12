@@ -3,7 +3,6 @@
     text-align: center;
     margin: 0;
     text-decoration: none;
-    background: #2B7A78;
 }
 
 .App {
@@ -11,15 +10,20 @@
     flex-direction: column;
 }
 
-
 main {
     display: flex;
     flex-direction: row;
-   
 }
 
-.noteList {
+.container1 {
+    background: #2B7A78;
+    width: 30%;
+    min-height: 85vh;
+}
+
+.container2 {
     background: #3AAFA9;
-    height: 85vh;
-    width: 100%;
+    width: 70%;
+    min-height: 85vh;
+    margin-bottom: 0;
 }

@@ -19,24 +19,46 @@
     transform: rotateY(360deg);
 }
 
-.buttonBox{
-    width: 10em;
-    margin: 20px auto;
+.addFolderButtonMain {
     background: rgb(255, 209, 83);
+    font-size: 15px;
+    margin: 30px auto;
+    padding: 0.5em 1em;
+    text-decoration: none;
     border-radius: 30px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    height: 2.5em;
-    padding: 6px;
+    font-weight: bolder;
+    border-bottom: solid 4px #627295;
+    width: 50%;
 }
+
+.addFolderButtonMain:hover, .addButton:hover {
+    background: orange;
+}
+
+.addFolderButtonMain:active, .addButton:active {
+    /* got css idea from https://saruwakakun.com/en/css3-buttons*/
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*Move down*/
+    border-bottom: none;/*disappears*/
+}
+
 
 .addButton {
     background: rgb(255, 209, 83);
-    color: black;
-    margin: auto;
-    
+    font-size: 18px;
+
+    padding: 0.5em 2.5em;
+    text-decoration: none;
+    border-radius: 30px;
+    box-shadow: 0 10px 0px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    font-weight: bolder;
+    border-bottom: solid 4px #627295;
 }
 
 
-.addButton:hover {
-    background: orange;
-}
+
+
+
+

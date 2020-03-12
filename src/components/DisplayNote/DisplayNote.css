@@ -14,7 +14,7 @@
 }
 
 .displayNote{
-    height: 82.75vh;
+    min-height: 100%;
     width: 100%;
     background: #3AAFA9;
     color: black;
@@ -22,8 +22,8 @@
 
 .displayNote > .note {
     width: 80%;
-    margin: 20px auto 0;
-    padding: 30px;
+    margin: 15px auto 0;
+    padding: 5% 6% 0;
     border-top: 3px solid black;
     border-right: 3px solid black;
     border-left: 3px solid black;

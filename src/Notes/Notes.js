@@ -15,10 +15,11 @@ class Notes extends React.Component {
     }
 
     render() {
-        const {notes=[] } = this.context;
-        const {folderId} = this.props.match.params;
+        const { notes = [] } = this.context;
+        const { folderId } = this.props.match.params;
         const folderNotes = getNotes(notes, folderId);
         return (
+
             <section className="allNotes">
                 <h2>Notes</h2>
                 <ul>
@@ -28,23 +29,26 @@ class Notes extends React.Component {
                                 id={note.id}
                                 name={note.name}
                                 modified={note.modified}
-                             //  deleteNote={props.deleteNote} *removed to use context instead
+                            //  deleteNote={props.deleteNote} *removed to use context instead
                             />
                         </li>
                     )}
-        
                     <div className='buttonBox'>
-                        <NavButton 
+                        <NavButton
                             tag={Link}
                             to='/addNote'
                             type='button'
                             className='addButton'
                         >
                             + Note
-                        </NavButton>
+                </NavButton>
                     </div>
+
                 </ul>
+
             </section>
+
+
         )
     }
 }

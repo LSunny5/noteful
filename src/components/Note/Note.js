@@ -6,34 +6,37 @@ import NotefulContext from '../../NotefulContext';
 import config from '../../config';
 
 class Note extends React.Component {
-    static defaultProps = {
-        onDeleteNote: () => { },
-    }
     static contextType = NotefulContext;
+    static defaultProps = {
+        history: {
+            push: () => []
+        },
+    }
 
     handleClickDelete = event => {
         event.preventDefault();
         const noteId = this.props.id;
-        
+
         //fetch code here for note
         fetch(`${config.APIEndpoint}/notes/${noteId}`, {
-            method: 'DELETE', 
+            method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
-            }, 
+            },
         })
-        .then( response => {
-            if (!response.ok)
-                return response.json().then(error => Promise.reject(error))
-            return response.json()
-        })
-        .then( data => {
-            this.context.deleteNote(noteId)
-            this.props.deleteNote(noteId) //parent performs behavior also
-        })
-        .catch (error => {
-            console.error({error})
-        })
+            .then(response => {
+                if (!response.ok)
+                    return response.json().then(error => Promise.reject(error))
+                return response.json()
+            })
+            .then(data => {
+                this.context.deleteNote(noteId)
+                //  this.props.deleteNote(noteId) //parent performs behavior also
+            })
+            .catch(error => {
+                console.error({ error })
+            })
+        this.props.history.push(`/`);
     }
 
     render() {
@@ -52,18 +55,18 @@ class Note extends React.Component {
                                 </span>
                             </div>
                         </div>
+                        <button
+                            className="deleteNoteButton"
+                            type='button'
+                            onClick={this.handleClickDelete}
+                        >
+                            Delete
+                        </button>
                     </h2>
                 </Link>
-                <button
-                    className="deleteNoteButton"
-                    type='button'
-                    onClick={this.handleClickDelete}
-                >
-                    Delete
-                </button>
             </div>
         )
     }
 }
 
-export default Note;
+export default Note
