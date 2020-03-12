@@ -7,10 +7,10 @@ import NotefulContext from '../NotefulContext';
 import config from '../config';
 import { getNotes } from '../noteFunctions';
 import PropTypes from 'prop-types';
+import FolderError from '../ErrorFiles/FolderError';
 
 class Folders extends React.Component {
     static contextType = NotefulContext;
-
 
     handleDelete = folder => {
         //event.preventDefault();
@@ -38,10 +38,7 @@ class Folders extends React.Component {
     }
 
     render() {
-        const {
-            folders = [],
-            notes = [],
-        } = this.context;
+        const { folders = [] } = this.context;
 
         return (
             <section className="allFolders">
@@ -52,37 +49,36 @@ class Folders extends React.Component {
                             key={folder.id}
                             className="folderName"
                         >
-                            <NavLink
-                                className="folderLink"
-                                to={`/folder/${folder.id}`}
-                            >
-                                <div className='nameBox'>
-                                    {folder.name}
-                                    <span className='numberNotes'>
-                                        {' ('}{numNotes(notes, folder.id)})
-                                    </span>
-                                </div>
-
-                                <button
-                                    className="deleteFolderButton"
-                                    type='button'
-                                    onClick={() => this.handleDelete(folder.id)}
-                                //implement note removal later..
-
-                                //deleteFolder={props.deleteFolder} *removed to use context instead
-
-
-
-
-
-
+                            <FolderError message="Folder could not be found.">
+                                <NavLink
+                                    className="folderLink"
+                                    to={`/folder/${folder.id}`}
                                 >
-                                    Delete
-                                </button>
+                                    <div className='nameBox'>
+                                        {folder.name}
+                                        <span className='numberNotes'>
+                                            {' ('}{numNotes(notes, folder.id)})
+                                    </span>
+                                    </div>
+
+                                    <button
+                                        className="deleteFolderButton"
+                                        type='button'
+                                        onClick={() => this.handleDelete(folder.id)}
+                                    //implement note removal later..
+
+                                    //deleteFolder={props.deleteFolder} *removed to use context instead
 
 
 
-                            </NavLink>
+
+
+
+                                    >
+                                        Delete
+                                    </button>
+                                </NavLink>
+                            </FolderError>
                         </li>
                     )}
                 </ul>
@@ -97,6 +93,16 @@ class Folders extends React.Component {
             </section>
         );
     }
+}
+
+Folders.propTypes = {
+    folders:
+        PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired
+            })
+        )
 }
 
 export default Folders;
