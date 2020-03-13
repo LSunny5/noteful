@@ -1,0 +1,11 @@
+.notFoundPage > h2 {
+    font-size: 3rem;
+    padding: 10%;
+    color: darkred;
+}
+
+.notFoundPage > p {
+    font-size: 2.5rem;
+    margin: 3% 6%;
+    padding: 3%;
+}

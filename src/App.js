@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 //import dummyStore from './dummy-store';
 
 import Header from './Header/Header';
@@ -10,7 +10,7 @@ import DisplayNote from './components/DisplayNote/DisplayNote';
 import DisplayNoteFolder from './components/DisplayNoteFolder/DisplayNoteFolder';
 import AddFolder from './components/AddFolder/AddFolder';
 import AddNote from './components/AddNote/AddNote';
-import { getNotes } from './noteFunctions';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 import NotefulContext from './NotefulContext';
 import config from './config';
@@ -45,31 +45,23 @@ class App extends React.Component {
       })
       .catch(error => {
         console.error({ error });
+        alert('Could not retrieve notes and folders:  ' + error);
       });
   }
 
   deleteNote = noteId => {
     const notesArray = this.state.notes.filter(note => note.id !== noteId);
     this.setState({ notes: notesArray });
+    console.log(notesArray);
   }
 
-
-
-
-
-  /**************************************************************/
-  //do later
   deleteFolder = folderId => {
     const folderArray = this.state.folders.filter(folder => folder.id !== folderId);
     this.setState({ folders: folderArray });
+
+    const tempNotes = this.state.notes.filter(note => note.folderId !== folderId);
+    this.setState({ notes: tempNotes });
   }
-  /**************************************************************/
-
-
-
-
-
-
 
   addNewFolder = newFolder => {
     this.setState({ folders: [...this.state.folders, newFolder] });
@@ -82,29 +74,32 @@ class App extends React.Component {
   renderFolderRoutes() {
     return (
       <>
-        {['/', '/folder/:folderId'].map(path => (
+        <Switch>
+          {['/', '/folder/:folderId'].map(path => (
+            <Route
+              key={path}
+              path={path}
+              exact
+              component={Folders}
+            />
+          ))}
+
           <Route
-            key={path}
-            path={path}
-            exact
-            component={Folders}
+            path='/note/:noteId'
+            component={DisplayNoteFolder}
           />
-        ))}
 
-        <Route
-          path='/note/:noteId'
-          component={DisplayNoteFolder}
-        />
+          <Route
+            path='/addFolder'
+            component={DisplayNoteFolder}
+          />
 
-        <Route
-          path='/addFolder'
-          component={DisplayNoteFolder}
-        />
-
-        <Route
-          path='/addNote'
-          component={DisplayNoteFolder}
-        />
+          <Route
+            path='/addNote'
+            component={DisplayNoteFolder}
+          />
+          <Route component={DisplayNoteFolder} />
+        </Switch>
       </>
     );
   }
@@ -112,28 +107,32 @@ class App extends React.Component {
   renderNoteRoutes() {
     return (
       <>
-        {['/', '/folder/:folderId'].map(path => (
+        <Switch>
+          {['/', '/folder/:folderId'].map(path => (
+            <Route
+              key={path}
+              path={path}
+              exact
+              component={Notes}
+            />
+          ))}
+
           <Route
-            key={path}
-            path={path}
-            exact
-            component={Notes}
+            path='/note/:noteId'
+            component={DisplayNote}
           />
-        ))}
+          <Route
+            path='/addFolder'
+            component={AddFolder}
+          />
 
-        <Route
-          path='/note/:noteId'
-          component={DisplayNote}
-        />
-        <Route
-          path='/addFolder'
-          component={AddFolder}
-        />
+          <Route
+            path='/addNote'
+            component={AddNote}
+          />
 
-        <Route
-          path='/addNote'
-          component={AddNote}
-        />
+          <Route component={NotFoundPage} />
+        </Switch>
       </>
     );
   }
@@ -172,18 +171,18 @@ class App extends React.Component {
 
 App.propTypes = {
   notes: PropTypes.arrayOf(
-      PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          name: PropTypes.string.isRequired,
-          modified: PropTypes.instanceOf(Date).isRequired,
-          folderId: PropTypes.string.isRequired,
-          content: PropTypes.string.isRequired,
-      })
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      modified: PropTypes.instanceOf(Date).isRequired,
+      folderId: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+    })
   ),
   folders: PropTypes.arrayOf(
     PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     })
   ),
 };

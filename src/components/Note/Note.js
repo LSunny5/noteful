@@ -32,6 +32,7 @@ class Note extends React.Component {
             })
             .catch(error => {
                 console.error({ error })
+                alert('Could not delete note:  ' + error );
             })
     }
 

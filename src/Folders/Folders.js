@@ -5,7 +5,6 @@ import NavButton from '../components/NavButton/NavButton';
 import { numNotes } from '../noteFunctions';
 import NotefulContext from '../NotefulContext';
 import config from '../config';
-import { getNotes } from '../noteFunctions';
 import PropTypes from 'prop-types';
 import FolderError from '../ErrorFiles/FolderError';
 
@@ -13,11 +12,7 @@ class Folders extends React.Component {
     static contextType = NotefulContext;
 
     handleDelete = folder => {
-        //event.preventDefault();
-        const folderId = folder;
-        const notesInFolder = getNotes(folder);
-
-        fetch(`${config.APIEndpoint}/folders/${folderId}`, {
+        fetch(`${config.APIEndpoint}/folders/${folder}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -29,22 +24,12 @@ class Folders extends React.Component {
                 return response.json()
             })
             .then(data => {
-                this.context.deleteFolder(folderId)
-              //  this.context.deleteNote(notesInFolder)
-              
-                const savedNotes = getNotes(this.context.state.notes, folderId);
-                this.context.setState({ notes: savedNotes });
-
-               this.props.history.push('/');
-
-
-
-              
-                
-                
+                this.context.deleteFolder(folder)
+                this.props.history.push('/');
             })
             .catch(error => {
                 console.error({ error })
+                alert('Could not delete folder:  ' + error );
             })
     }
 
@@ -76,16 +61,7 @@ class Folders extends React.Component {
                                     <button
                                         className="deleteFolderButton"
                                         type='button'
-                                        onClick={() => this.handleDelete(folder.id, notes)}
-                                    //implement note removal later..
-
-                                    //deleteFolder={props.deleteFolder} *removed to use context instead
-
-
-
-
-
-
+                                        onClick={() => this.handleDelete(folder.id)}
                                     >
                                         Delete
                                     </button>
