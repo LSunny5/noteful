@@ -24,3 +24,6 @@ This is a json-server managed API meant for developing `noteful-client` projects
 Once started, this will run a local API server on `http://localhost:9090`.
 
 The database is initiated from the `db.js` file whenever the server is started. No data is persisted after the server has been shut down.
+
+## Production mode
+http://localhost:5000
