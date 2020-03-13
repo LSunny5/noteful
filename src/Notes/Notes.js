@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import NavButton from '../components/NavButton/NavButton';
 import NotefulContext from '../NotefulContext';
 import { getNotes } from '../noteFunctions';
+import PropTypes from 'prop-types';
+import NoteError from '../ErrorFiles/NoteError';
 
 class Notes extends React.Component {
     static contextType = NotefulContext;
@@ -18,21 +20,24 @@ class Notes extends React.Component {
         const { notes = [] } = this.context;
         const { folderId } = this.props.match.params;
         const folderNotes = getNotes(notes, folderId);
+  
         return (
-
             <section className="allNotes">
                 <h2>Notes</h2>
                 <ul>
-                    {folderNotes.map(note =>
-                        <li key={note.id}>
-                            <Note
-                                id={note.id}
-                                name={note.name}
-                                modified={note.modified}
-                            //  deleteNote={props.deleteNote} *removed to use context instead
-                            />
-                        </li>
-                    )}
+                    {(folderNotes.length > 0) ? (
+                        folderNotes.map(note =>
+                            <li key={note.id}>
+                                <NoteError>
+                                    <Note
+                                        id={note.id}
+                                        name={note.name}
+                                        modified={note.modified}
+                                    />
+                                </NoteError>
+                            </li>
+                        )) : (<div className="noNotes">No notes in this folder...</div>)}
+                        
                     <div className='buttonBox'>
                         <NavButton
                             tag={Link}
@@ -41,16 +46,24 @@ class Notes extends React.Component {
                             className='addButton'
                         >
                             + Note
-                </NavButton>
+                        </NavButton>
                     </div>
-
                 </ul>
-
             </section>
-
-
         )
     }
 }
+
+Notes.propTypes = {
+    notes: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            modified: PropTypes.instanceOf(Date).isRequired
+        })
+    ),
+    folderId: PropTypes.string,
+    folderNotes: PropTypes.array,
+};
 
 export default Notes;

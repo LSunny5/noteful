@@ -1,6 +1,6 @@
 import React from 'react';
 import './Folders.css';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 import NavButton from '../components/NavButton/NavButton';
 import { numNotes } from '../noteFunctions';
 import NotefulContext from '../NotefulContext';
@@ -30,7 +30,18 @@ class Folders extends React.Component {
             })
             .then(data => {
                 this.context.deleteFolder(folderId)
-                this.context.deleteNote(notesInFolder)
+              //  this.context.deleteNote(notesInFolder)
+              
+                const savedNotes = getNotes(this.context.state.notes, folderId);
+                this.context.setState({ notes: savedNotes });
+
+               this.props.history.push('/');
+
+
+
+              
+                
+                
             })
             .catch(error => {
                 console.error({ error })
@@ -39,6 +50,7 @@ class Folders extends React.Component {
 
     render() {
         const { folders = [] } = this.context;
+        const { notes = [] } = this.context;
 
         return (
             <section className="allFolders">
@@ -64,7 +76,7 @@ class Folders extends React.Component {
                                     <button
                                         className="deleteFolderButton"
                                         type='button'
-                                        onClick={() => this.handleDelete(folder.id)}
+                                        onClick={() => this.handleDelete(folder.id, notes)}
                                     //implement note removal later..
 
                                     //deleteFolder={props.deleteFolder} *removed to use context instead
@@ -102,7 +114,8 @@ Folders.propTypes = {
                 id: PropTypes.string.isRequired,
                 name: PropTypes.string.isRequired
             })
-        )
+        ), 
+    notes: PropTypes.array
 }
 
-export default Folders;
+export default withRouter(Folders);

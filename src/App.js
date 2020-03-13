@@ -10,11 +10,12 @@ import DisplayNote from './components/DisplayNote/DisplayNote';
 import DisplayNoteFolder from './components/DisplayNoteFolder/DisplayNoteFolder';
 import AddFolder from './components/AddFolder/AddFolder';
 import AddNote from './components/AddNote/AddNote';
+import { getNotes } from './noteFunctions';
 
 import NotefulContext from './NotefulContext';
 import config from './config';
 
-
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
   static contextType = NotefulContext;
@@ -47,35 +48,22 @@ class App extends React.Component {
       });
   }
 
-
-
-
-
   deleteNote = noteId => {
     const notesArray = this.state.notes.filter(note => note.id !== noteId);
     this.setState({ notes: notesArray });
-    //this.props.history.push('/')
   }
 
 
 
 
 
-
-
-
-
+  /**************************************************************/
   //do later
   deleteFolder = folderId => {
     const folderArray = this.state.folders.filter(folder => folder.id !== folderId);
     this.setState({ folders: folderArray });
-
-    // delete the notes also;
-
-
-
   }
-
+  /**************************************************************/
 
 
 
@@ -85,27 +73,13 @@ class App extends React.Component {
 
   addNewFolder = newFolder => {
     this.setState({ folders: [...this.state.folders, newFolder] });
-
-
-
-
   };
 
   addNewNote = note => {
     this.setState({ notes: [...this.state.notes, note] });
   };
 
-
-
-
-
-
-
-
-
-
   renderFolderRoutes() {
-    // const { notes, folders } = this.state;
     return (
       <>
         {['/', '/folder/:folderId'].map(path => (
@@ -192,8 +166,26 @@ class App extends React.Component {
           </main>
         </div>
       </NotefulContext.Provider>
-        );
-      }
-    }
-    
+    );
+  }
+}
+
+App.propTypes = {
+  notes: PropTypes.arrayOf(
+      PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+          modified: PropTypes.instanceOf(Date).isRequired,
+          folderId: PropTypes.string.isRequired,
+          content: PropTypes.string.isRequired,
+      })
+  ),
+  folders: PropTypes.arrayOf(
+    PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+    })
+  ),
+};
+
 export default App;

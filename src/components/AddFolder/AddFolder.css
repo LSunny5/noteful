@@ -48,12 +48,10 @@ label {
 }
 
 .addFolderButton {
-    padding: 10px 50px;
-    margin: 0 30px;
     background: rgb(255, 209, 83);
     border-radius: 50px;
     font-size: 14px;
-    width: 150px;
+    width: 30%;
     font-weight: bold;
 }
 
@@ -73,12 +71,10 @@ label {
 }
 
 .cancelButton {
-    padding: 10px 50px;
-    margin: 0 30px;
     background: lightcoral;
     border-radius: 50px;
     font-size: 14px;
-    width: 150px;
+    width: 30%;
     font-weight: bold;
 }
 

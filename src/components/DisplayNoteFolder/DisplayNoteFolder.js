@@ -3,6 +3,7 @@ import './DisplayNoteFolder.css';
 import NavButton from '../NavButton/NavButton';
 import NotefulContext from '../../NotefulContext';
 import { findNote, findFolder } from '../../noteFunctions';
+import PropTypes from 'prop-types';
 
 class DisplayNoteFolder extends React.Component {
     static contextType = NotefulContext;
@@ -21,6 +22,8 @@ class DisplayNoteFolder extends React.Component {
         const note = findNote(notes, noteId) || {};
         const folder = findFolder(folders, note.folderId);
 
+        if (!note) return 'Sorry no matching note was found...';
+
         return (
             <div className="displayNoteFolder">
                 <NavButton
@@ -31,15 +34,32 @@ class DisplayNoteFolder extends React.Component {
                 >
                     Go Back
                 </NavButton>
-    
+            
                 {folder && (
-                    <h3 className="notesFolder">
+                    <h2 className="notesFolder">
                         {folder.name}
-                    </h3>
+                    </h2>
                 )}
+    
             </div>
         );
     }
 }
+
+DisplayNoteFolder.propTypes = {
+    folders: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired
+        })
+    ), 
+    notes: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired, 
+            modified: PropTypes.instanceOf(Date).isRequired
+        })
+    )
+};
 
 export default DisplayNoteFolder;

@@ -59,7 +59,7 @@ class AddFolder extends React.Component {
             })
             .catch(error => {
                // this.setState({ fetchError: error });
-               
+               console.error({ error })
             })
     }
 
@@ -67,9 +67,9 @@ class AddFolder extends React.Component {
         const nameError = this.validateFolderName();
         // this.setState({ fetchError: null });
 
-        if (this.state.fetchError) {
-            return <p className="error">{this.state.fetchError}</p>;
-        }
+    //    if (this.state.fetchError) {
+     //       return <p className="error">{this.state.fetchError}</p>;
+      //  }
 
         return (
             <section className='addFolderBox'>

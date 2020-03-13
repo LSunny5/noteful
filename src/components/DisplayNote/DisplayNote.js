@@ -1,8 +1,10 @@
 import React from 'react';
 import './DisplayNote.css';
 import Note from '../Note/Note';
+
 import NotefulContext from '../../NotefulContext';
 import { findNote } from '../../noteFunctions';
+import PropTypes from 'prop-types';
 
 class DisplayNote extends React.Component {
     static contextType = NotefulContext;
@@ -10,11 +12,6 @@ class DisplayNote extends React.Component {
         match: {
             params: {}
         }
-    }
-
-    //Implement delete button on the note page, if delete is successful, redirect to / path.
-    handleDeleteNote = noteId => {
-        this.context.history.push('/')
     }
 
     render() {
@@ -27,7 +24,6 @@ class DisplayNote extends React.Component {
                     id={note.id}
                     name={note.name}
                     modified={note.modified}
-                    deleteNote={this.handleDeleteNote}
                 />
                 <div className="noteDesc">
                     {note.content.split(/\n \r|\n/).map((paragraph, index) =>
@@ -38,5 +34,16 @@ class DisplayNote extends React.Component {
         )
     }
 }
+
+Note.propTypes = {
+	notes: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            modified: PropTypes.instanceOf(Date).isRequired, 
+			content: PropTypes.string.isRequired,
+		})
+	)
+};
 
 export default DisplayNote;
