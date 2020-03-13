@@ -15,7 +15,6 @@ class AddFolder extends React.Component {
                 value: '',
                 touched: false
             },
-            ///fetchError: null,
         }
     }
 
@@ -41,7 +40,6 @@ class AddFolder extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
         const folder = { name: event.target['folderName'].value };
-	//	this.setState({ fetchError: null });
 
         fetch(`${config.APIEndpoint}/folders`, {
             method: 'POST',
@@ -58,19 +56,12 @@ class AddFolder extends React.Component {
                 this.props.history.push(`/folder/${folder.id}`)
             })
             .catch(error => {
-               // this.setState({ fetchError: error });
                console.error({ error })
+               alert('Error! New folder was not added:  ' + error);
             })
     }
 
     render() {
-        const nameError = this.validateFolderName();
-        // this.setState({ fetchError: null });
-
-    //    if (this.state.fetchError) {
-     //       return <p className="error">{this.state.fetchError}</p>;
-      //  }
-
         return (
             <section className='addFolderBox'>
                 <h2>Add a Folder</h2>
@@ -80,7 +71,7 @@ class AddFolder extends React.Component {
                     <div className='text'>
                         <div className="errorBox">
 
-                            {this.state.checkFolderName.touched && <ValidationError message={nameError} />}
+                            {this.state.checkFolderName.touched && <ValidationError message={this.validateFolderName()} />}
                         </div>
                         <label htmlFor='folderName'>
                             Enter the name of the folder:

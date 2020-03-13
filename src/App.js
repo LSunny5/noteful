@@ -52,7 +52,6 @@ class App extends React.Component {
   deleteNote = noteId => {
     const notesArray = this.state.notes.filter(note => note.id !== noteId);
     this.setState({ notes: notesArray });
-    console.log(notesArray);
   }
 
   deleteFolder = folderId => {

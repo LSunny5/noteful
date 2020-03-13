@@ -91,6 +91,7 @@ class AddNote extends React.Component {
             })
             .catch(error => {
                 console.error({ error })
+                alert('Error! New note was not added:  ' + error);
             })
     }
 
