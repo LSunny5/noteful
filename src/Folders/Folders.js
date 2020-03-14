@@ -62,6 +62,8 @@ class Folders extends React.Component {
                                         className="deleteFolderButton"
                                         type='button'
                                         onClick={() => this.handleDelete(folder.id)}
+                                        aria-pressed='false'
+                                        aria-label='delete folder button'
                                     >
                                         Delete
                                     </button>
@@ -75,6 +77,9 @@ class Folders extends React.Component {
                     to="/addFolder"
                     type='button'
                     className='addFolderButtonMain'
+                    role='button'
+                    aria-pressed='false'
+                    aria-label='delete folder button'
                 >
                     + Add Folder
                 </NavButton>

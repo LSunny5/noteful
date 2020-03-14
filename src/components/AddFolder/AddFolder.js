@@ -56,51 +56,59 @@ class AddFolder extends React.Component {
                 this.props.history.push(`/folder/${folder.id}`)
             })
             .catch(error => {
-               console.error({ error })
-               alert('Error! New folder was not added:  ' + error);
+                console.error({ error })
+                alert('Error! New folder was not added:  ' + error);
             })
     }
 
     render() {
         return (
             <section className='addFolderBox'>
-                <h2>Add a Folder</h2>
                 <NoteForm
                     onSubmit={this.handleSubmit}
                 >
-                    <div className='text'>
-                        <div className="errorBox">
-
-                            {this.state.checkFolderName.touched && <ValidationError message={this.validateFolderName()} />}
-                        </div>
-                        <label htmlFor='folderName'>
-                            Enter the name of the folder:
+                    <fieldset>
+                        <legend>Add a Folder</legend>
+                        <div className='text'>
+                            <div id="errorBox">
+                                {this.state.checkFolderName.touched && <ValidationError message={this.validateFolderName()} />}
+                            </div>
+                            <label htmlFor='folderName'>
+                                Enter the name of the folder:
                         </label>
-                        <p>Folder name must be between 3 and 50 characters.</p>
-                        <input
-                            type='text'
-                            id='folderName'
-                            autoFocus
-                            onChange={e => this.updateFolderName(e.target.value)}
-                        />
-                    </div>
+                            <p id="nameRestriction">Folder name must be between 3 and 50 characters.</p>
+                            <input
+                                type='text'
+                                id='folderName'
+                                autoFocus
+                                aria-required='true'
+                                aria-describedby='nameRestriction'
+                                aria-label='folder name'
+                                onChange={e => this.updateFolderName(e.target.value)}
+                            />
+                        </div>
 
-                    <div className='addFolderbuttonBox'>
-                        <button
-                            type="button"
-                            className="cancelButton"
-                            onClick={this.handleCancel}
-                        >
-                            Cancel
+                        <div className='addFolderbuttonBox'>
+                            <button
+                                type="button"
+                                className="cancelButton"
+                                onClick={this.handleCancel}
+                                aria-pressed='false'
+                                aria-label='cancel action button'
+                            >
+                                Cancel
                         </button>
-                        <button
-                            type='submit'
-                            className="addFolderButton"
-                            disabled={this.validateFolderName()}
-                        >
-                            Add
+                            <button
+                                type='submit'
+                                className="addFolderButton"
+                                aria-pressed='false'
+                                aria-label='add and submit folder name'
+                                disabled={this.validateFolderName()}
+                            >
+                                Add
                         </button>
-                    </div>
+                        </div>
+                    </fieldset>
                 </NoteForm>
             </section>
         )

@@ -22,10 +22,10 @@ class AddNote extends React.Component {
             chooseFolder: {
                 value: '',
                 touched: false
-            }, 
+            },
         }
     }
-    
+
     updateName(name) {
         this.setState({ noteName: { value: name, touched: true } });
     }
@@ -35,7 +35,7 @@ class AddNote extends React.Component {
     }
 
     updateFolderChoice(folder) {
-        this.setState({chooseFolder: {value: folder, touched: true}});
+        this.setState({ chooseFolder: { value: folder, touched: true } });
     }
 
     validateName() {
@@ -103,91 +103,109 @@ class AddNote extends React.Component {
 
         return (
             <section className="addNote">
-                <h2>Add a note</h2>
                 <NoteForm onSubmit={this.handleSubmit}>
-                    <div className='text'>
-                        <label htmlFor='noteName'>
-                            Name
+                    <fieldset>
+                        <legend>Add a Note</legend>
+                        <div className='text'>
+                            <label htmlFor='noteName'>
+                                Name
                         </label>
-                        <input
-                            type='text'
-                            id='noteName'
-                            autoFocus
-                            required
-                            onChange={e => this.updateName(e.target.value)}
-                        />
-                        <div className="errorBox">
-                            {this.state.noteName.touched && <ValidationError message={nameError} />}
+                            <input
+                                type='text'
+                                id='noteName'
+                                autoFocus
+                                required
+                                aria-required='true'
+                                aria-invalid='false'
+                                aria-describedby='nameErrorBox'
+                                aria-label='note name'
+                                onChange={e => this.updateName(e.target.value)}
+                            />
+                            <div className="errorBox" id="nameErrorBox">
+                                {this.state.noteName.touched && <ValidationError message={nameError} />}
+                            </div>
                         </div>
-                    </div>
 
-                    <div className='text'>
-                        <label htmlFor='noteContent'>
-                            Content
+                        <div className='text'>
+                            <label htmlFor='noteContent'>
+                                Content
                         </label>
-                        <textarea
-                            id='noteContent'
-                            required
-                            onChange={e => this.updateContent(e.target.value)}
-                        >
-                        </textarea>
-                        <div className="errorBox">
-                            {this.state.noteContent.touched && <ValidationError message={contentError} />}
-                        </div>
-                    </div>
-
-                    <div className='text'>
-                        <label htmlFor='chooseFolder'>
-                            Folder
-                        </label>
-                        <select
-                            id='chooseFolder'
-                            onChange={e => {this.updateFolderChoice(e.target.value)}}
-                            defaultValue=''
-                            required
-                        >
-                            <option
-                                value=''
-                                disabled
+                            <textarea
+                                id='noteContent'
+                                required
+                                onChange={e => this.updateContent(e.target.value)}
+                                aria-required='true'
+                                aria-invalid='false'
+                                aria-describedby='contentErrorBox'
+                                aria-label='Enter folder name'
                             >
-                                Please choose a folder...
+                            </textarea>
+                            <div className="errorBox" id="contentErrorBox">
+                                {this.state.noteContent.touched && <ValidationError message={contentError} />}
+                            </div>
+                        </div>
+
+                        <div className='text'>
+                            <label htmlFor='chooseFolder'>
+                                Folder
+                        </label>
+                            <select
+                                id='chooseFolder'
+                                onChange={e => { this.updateFolderChoice(e.target.value) }}
+                                defaultValue=''
+                                required
+                                aria-required='true'
+                                aria-invalid='false'
+                                aria-describedby='folderErrorBox'
+                                aria-label='select folder'
+                            >
+                                <option
+                                    value=''
+                                    disabled
+                                >
+                                    Please choose a folder...
                             </option>
 
-                            {folders.map(folder =>
-                                <option
-                                    key={folder.id}
-                                    value={folder.id}
-                                >
-                                    {folder.name}
-                                </option>
-                            )}
+                                {folders.map(folder =>
+                                    <option
+                                        key={folder.id}
+                                        value={folder.id}
+                                    >
+                                        {folder.name}
+                                    </option>
+                                )}
 
-                        </select>
-                        <div className="errorBox">
-                            {this.state.chooseFolder.touched && <ValidationError message={folderError} />}
+                            </select>
+                            <div className="errorBox" id="folderErrorBox">
+                                {this.state.chooseFolder.touched && <ValidationError message={folderError} />}
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="buttonBox">
-                        <button
-                            type="button"
-                            className="cancelButton"
-                            onClick={this.handleCancel}
-                        >
-                            Cancel
+                        <div className="buttonBox">
+                            <button
+                                type="button"
+                                className="cancelButton"
+                                onClick={this.handleCancel}
+                                aria-pressed='false'
+                                aria-label='cancel form button'
+                            >
+                                Cancel
                         </button>
-                        <button
-                            type='submit'
-                            className="addNoteButton"
-                            disabled={
-                                this.validateName() ||
-                                this.validateContent() ||
-                                this.validateFolderChoice()
-                            }
-                        >
-                            Add Note
+                            <button
+                                type='submit'
+                                className="addNoteButton"
+                                aria-pressed='false'
+                                aria-label='submit form add note button'
+                                disabled={
+                                    this.validateName() ||
+                                    this.validateContent() ||
+                                    this.validateFolderChoice()
+                                }
+                            >
+                                Add Note
                         </button>
-                    </div>
+                        </div>
+                    </fieldset>
                 </NoteForm>
             </section>
         )

@@ -13,10 +13,15 @@
     background: #F3FFFF;
 }
 
-.addNote > h2 {
+fieldset{
+    border: none;
+}
+
+legend {
     font-size: 2.5em;
     background: #F3FFFF;
     margin: 10px;
+    font-weight: bolder;
 }
 
 #noteName {

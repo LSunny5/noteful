@@ -24,6 +24,19 @@ class Notes extends React.Component {
         return (
             <section className="allNotes">
                 <h2>Notes</h2>
+                <div className='buttonBox'>
+                        <NavButton
+                            tag={Link}
+                            to='/addNote'
+                            type='button'
+                            className='addButton'
+                            role='button'
+                            aria-pressed='false'
+                            aria-label='add note button'
+                        >
+                            + Note
+                        </NavButton>
+                </div>
                 <ul>
                     {(folderNotes.length > 0) ? (
                         folderNotes.map(note =>
@@ -36,18 +49,7 @@ class Notes extends React.Component {
                                     />
                                 </NoteError>
                             </li>
-                        )) : (<div className="noNotes">No notes in this folder...</div>)}
-                        
-                    <div className='buttonBox'>
-                        <NavButton
-                            tag={Link}
-                            to='/addNote'
-                            type='button'
-                            className='addButton'
-                        >
-                            + Note
-                        </NavButton>
-                    </div>
+                        )) : (<li className="noNotes">No notes in this folder...</li>)}
                 </ul>
             </section>
         )

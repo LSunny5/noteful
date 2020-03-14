@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 //import dummyStore from './dummy-store';
@@ -72,7 +72,7 @@ class App extends React.Component {
 
   renderFolderRoutes() {
     return (
-      <>
+      <Fragment>
         <Switch>
           {['/', '/folder/:folderId'].map(path => (
             <Route
@@ -99,13 +99,13 @@ class App extends React.Component {
           />
           <Route component={DisplayNoteFolder} />
         </Switch>
-      </>
+      </Fragment>
     );
   }
 
   renderNoteRoutes() {
     return (
-      <>
+      <Fragment>
         <Switch>
           {['/', '/folder/:folderId'].map(path => (
             <Route
@@ -132,7 +132,7 @@ class App extends React.Component {
 
           <Route component={NotFoundPage} />
         </Switch>
-      </>
+      </Fragment>
     );
   }
 

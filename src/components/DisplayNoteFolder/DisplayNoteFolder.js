@@ -31,6 +31,7 @@ class DisplayNoteFolder extends React.Component {
                     role='link'
                     onClick={() => this.props.history.goBack()}
                     className="backButton"
+                    aria-label='Go Back a Page'
                 >
                     Go Back
                 </NavButton>

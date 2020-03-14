@@ -32,7 +32,7 @@ class Note extends React.Component {
             })
             .catch(error => {
                 console.error({ error })
-                alert('Could not delete note:  ' + error );
+                alert('Could not delete note:  ' + error);
             })
     }
 
@@ -58,9 +58,11 @@ class Note extends React.Component {
                                     className="deleteNoteButton"
                                     type='button'
                                     onClick={this.handleClickDelete}
+                                    aria-pressed='false'
+                                    aria-label='delete note button'
                                 >
                                     Delete
-                            </button>
+                                </button>
                             </h2>
                         </Link>
                     </NoteError>) : (<div className="noInfo">Sorry no note details were found</div>)}
