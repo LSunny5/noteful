@@ -18,9 +18,11 @@ class Notes extends React.Component {
 
     render() {
         const { notes = [] } = this.context;
-        const { folderId } = this.props.match.params;
-        const folderNotes = getNotes(notes, folderId);
-  
+        //const { folderId } = this.props.match.params;
+        const { folder_id } = this.props.match.params;
+        //const folderNotes = getNotes(notes, folderId);
+        const folderNotes = getNotes(notes, folder_id);
+
         return (
             <section className="allNotes">
                 <h2>Notes</h2>
@@ -44,7 +46,8 @@ class Notes extends React.Component {
                                 <NoteError>
                                     <Note
                                         id={note.id}
-                                        name={note.name}
+                                        /* name={note.name} */
+                                        title={note.title}
                                         modified={note.modified}
                                     />
                                 </NoteError>
@@ -60,7 +63,7 @@ Notes.propTypes = {
     notes: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
             modified: PropTypes.instanceOf(Date).isRequired
         })
     ),

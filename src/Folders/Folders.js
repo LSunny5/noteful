@@ -21,7 +21,8 @@ class Folders extends React.Component {
             .then(response => {
                 if (!response.ok)
                     return response.json().then(error => { throw error })
-                return response.json()
+                //return response.json()
+                return response
             })
             .then(data => {
                 this.context.deleteFolder(folder)
@@ -29,7 +30,7 @@ class Folders extends React.Component {
             })
             .catch(error => {
                 console.error({ error })
-                alert('Could not delete folder:  ' + error );
+                alert('Could not delete folder:  ' + error);
             })
     }
 
@@ -52,9 +53,10 @@ class Folders extends React.Component {
                                     to={`/folder/${folder.id}`}
                                 >
                                     <div className='nameBox'>
-                                        {folder.name}
+                                        {/* {folder.name} - for use with noteful-json-server */}
+                                        {folder.title}{' '}
                                         <span className='numberNotes'>
-                                            {' ('}{numNotes(notes, folder.id)})
+                                            ({numNotes(notes, folder.id)})
                                     </span>
                                     </div>
 
@@ -95,7 +97,7 @@ Folders.propTypes = {
                 id: PropTypes.string.isRequired,
                 name: PropTypes.string.isRequired
             })
-        ), 
+        ),
     notes: PropTypes.array
 }
 

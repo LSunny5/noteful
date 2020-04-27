@@ -68,9 +68,11 @@ class AddNote extends React.Component {
     handleSubmit = event => {
         event.preventDefault()
         const newNote = {
-            name: event.target['noteName'].value,
+            //name: event.target['noteName'].value,
+            title: event.target['noteName'].value,
             content: event.target['noteContent'].value,
-            folderId: event.target['chooseFolder'].value,
+            //folderId: event.target['chooseFolder'].value,
+            folder_id: event.target['chooseFolder'].value,
             modified: new Date(),
         }
         fetch(`${config.APIEndpoint}/notes`, {
@@ -87,7 +89,7 @@ class AddNote extends React.Component {
             })
             .then(note => {
                 this.context.addNewNote(note)
-                this.props.history.push(`/folder/${note.folderId}`)
+                this.props.history.push(`/folder/${note.folder_id}`)
             })
             .catch(error => {
                 console.error({ error })
@@ -171,7 +173,7 @@ class AddNote extends React.Component {
                                         key={folder.id}
                                         value={folder.id}
                                     >
-                                        {folder.name}
+                                        {folder.title}
                                     </option>
                                 )}
 

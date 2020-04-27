@@ -24,27 +24,27 @@ class Note extends React.Component {
             .then(response => {
                 if (!response.ok)
                     return response.json().then(error => Promise.reject(error))
-                return response.json()
+                return response
             })
-            .then(data => {
+            .then(() => {
                 this.context.deleteNote(noteId)
                 this.props.history.push('/');
             })
             .catch(error => {
-                console.error({ error })
                 alert('Could not delete note:  ' + error);
             })
     }
 
     render() {
-        const { modified, name, id } = this.props;
+        //const { modified, name, id } = this.props;
+        const { modified, title, id } = this.props;
         return (
             <div className="note">
                 {(id) ? (
                     <NoteError>
                         <Link to={`/note/${id}`}>
                             <h2 className="noteTitle">
-                                {name}
+                                {title}
                                 <div className="noteDate">
                                     <div className="noteModifiedDate">
                                         Modified on
@@ -75,7 +75,8 @@ Note.propTypes = {
     notes: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
+            //name: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
             modified: PropTypes.instanceOf(Date).isRequired
         })
     )

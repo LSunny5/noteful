@@ -37,7 +37,7 @@ class App extends React.Component {
         if (!notesResponse.ok)
           return notesResponse.json().then(event => Promise.reject(event));
         if (!foldersResponse.ok)
-          return notesResponse.json().then(event => Promise.reject(event));
+          return foldersResponse.json().then(event => Promise.reject(event));
         return Promise.all([notesResponse.json(), foldersResponse.json()]);
       })
       .then(([notes, folders]) => {
@@ -58,7 +58,8 @@ class App extends React.Component {
     const folderArray = this.state.folders.filter(folder => folder.id !== folderId);
     this.setState({ folders: folderArray });
 
-    const tempNotes = this.state.notes.filter(note => note.folderId !== folderId);
+    //const tempNotes = this.state.notes.filter(note => note.folderId !== folderId);
+    const tempNotes = this.state.notes.filter(note => note.folder_id !== folderId);
     this.setState({ notes: tempNotes });
   }
 
@@ -72,9 +73,10 @@ class App extends React.Component {
 
   renderFolderRoutes() {
     return (
-      <Fragment>
+      <div>
         <Switch>
-          {['/', '/folder/:folderId'].map(path => (
+          {/* {['/', '/folder/:folderId'].map(path => ( */}
+            {['/', '/folder/:folder_id'].map(path => (
             <Route
               key={path}
               path={path}
@@ -84,7 +86,8 @@ class App extends React.Component {
           ))}
 
           <Route
-            path='/note/:noteId'
+            /* path='/note/:noteId' */
+            path='/note/:note_id'
             component={DisplayNoteFolder}
           />
 
@@ -99,15 +102,20 @@ class App extends React.Component {
           />
           <Route component={DisplayNoteFolder} />
         </Switch>
-      </Fragment>
+      </div>
     );
   }
 
   renderNoteRoutes() {
     return (
-      <Fragment>
+      <div>
         <Switch>
-          {['/', '/folder/:folderId'].map(path => (
+          {/* {['/', '/folder/:folder_id'].map(path => ( */}
+          {['/', '/folder/:folder_id'].map(path => (
+
+            console.log('here i am'),
+            
+            
             <Route
               key={path}
               path={path}
@@ -117,7 +125,8 @@ class App extends React.Component {
           ))}
 
           <Route
-            path='/note/:noteId'
+            /* path='/note/:noteId' */
+            path='/note/:note_id'
             component={DisplayNote}
           />
           <Route
@@ -131,8 +140,10 @@ class App extends React.Component {
           />
 
           <Route component={NotFoundPage} />
+
+          
         </Switch>
-      </Fragment>
+      </div>
     );
   }
 
@@ -172,16 +183,19 @@ App.propTypes = {
   notes: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      //name: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
       modified: PropTypes.instanceOf(Date).isRequired,
-      folderId: PropTypes.string.isRequired,
+      //folderId: PropTypes.string.isRequired,
+      folder_id: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
     })
   ),
   folders: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      //name: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
     })
   ),
 };

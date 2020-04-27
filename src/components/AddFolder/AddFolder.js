@@ -19,7 +19,7 @@ class AddFolder extends React.Component {
     }
 
     updateFolderName(name) {
-        this.setState({ checkFolderName: { value: name, touched: true } });
+        this.setState({ checkFolderName: { value: name, touched: true }})
     }
 
     validateFolderName() {
@@ -39,17 +39,18 @@ class AddFolder extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const folder = { name: event.target['folderName'].value };
+        const folder = { title: event.target['folderName'].value };
 
         fetch(`${config.APIEndpoint}/folders`, {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(folder)
+            body: JSON.stringify(folder),
         })
             .then(response => {
                 if (!response.ok)
                     return response.json().then(error => { throw error })
-                return response.json()
+                console.log(response);
+                return response.json();
             })
             .then(folder => {
                 this.context.addNewFolder(folder)

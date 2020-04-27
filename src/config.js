@@ -1,3 +1,4 @@
 export default {
-    APIEndpoint: 'http://localhost:9090'
+    APIEndpoint: 'http://localhost:8000/api', 
+    API_KEY: process.env.REACT_APP_API_KEY
 }

@@ -18,9 +18,11 @@ class DisplayNoteFolder extends React.Component {
 
     render () {
         const {notes, folders } = this.context;
-        const {noteId } = this.props.match.params;
-        const note = findNote(notes, noteId) || {};
-        const folder = findFolder(folders, note.folderId);
+        //const {noteId } = this.props.match.params;
+        const {note_id } = this.props.match.params;
+        const note = findNote(notes, note_id) || {};
+        //const folder = findFolder(folders, note.folderId);
+        const folder = findFolder(folders, note.folder_id);
 
         if (!note) return 'Sorry no matching note was found...';
 
@@ -38,7 +40,8 @@ class DisplayNoteFolder extends React.Component {
             
                 {folder && (
                     <h2 className="notesFolder">
-                        {folder.name}
+                        {/* {folder.name} */}
+                        {folder.title}
                     </h2>
                 )}
     
@@ -51,13 +54,15 @@ DisplayNoteFolder.propTypes = {
     folders: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired
+           //name: PropTypes.string.isRequired
+            title: PropTypes.string.isRequired
         })
     ), 
     notes: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired, 
+            //name: PropTypes.string.isRequired, 
+            title: PropTypes.string.isRequired,
             modified: PropTypes.instanceOf(Date).isRequired
         })
     )

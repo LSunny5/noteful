@@ -16,13 +16,16 @@ class DisplayNote extends React.Component {
 
     render() {
         const { notes = [] } = this.context;
-        const { noteId } = this.props.match.params;
-        const note = findNote(notes, noteId) || { content: '' }
+        //const { noteId } = this.props.match.params;
+        const { note_id } = this.props.match.params;
+        //const note = findNote(notes, noteId) || { content: '' }
+        const note = findNote(notes, note_id) || { content: '' }
         return (
             <section className="displayNote">
                 <Note
                     id={note.id}
-                    name={note.name}
+                    //name={note.name}
+                    title={note.title}
                     modified={note.modified}
                 />
                 <div className="noteDesc">
@@ -39,7 +42,8 @@ Note.propTypes = {
 	notes: PropTypes.arrayOf(
 		PropTypes.shape({
 			id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            //name: PropTypes.string.isRequired,
             modified: PropTypes.instanceOf(Date).isRequired, 
 			content: PropTypes.string.isRequired,
 		})
