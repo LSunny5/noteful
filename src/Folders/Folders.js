@@ -1,6 +1,6 @@
 import React from 'react';
 import './Folders.css';
-import { NavLink, Link, withRouter } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import NavButton from '../components/NavButton/NavButton';
 import { numNotes } from '../noteFunctions';
 import NotefulContext from '../NotefulContext';
@@ -101,4 +101,4 @@ Folders.propTypes = {
     notes: PropTypes.array
 }
 
-export default withRouter(Folders);
+export default Folders;

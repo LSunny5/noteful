@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 //import dummyStore from './dummy-store';
@@ -19,7 +19,6 @@ import PropTypes from 'prop-types';
 
 class App extends React.Component {
   static contextType = NotefulContext;
-
   state = {
     notes: [],
     folders: [],
@@ -112,10 +111,6 @@ class App extends React.Component {
         <Switch>
           {/* {['/', '/folder/:folder_id'].map(path => ( */}
           {['/', '/folder/:folder_id'].map(path => (
-
-            console.log('here i am'),
-            
-            
             <Route
               key={path}
               path={path}

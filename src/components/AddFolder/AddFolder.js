@@ -49,7 +49,6 @@ class AddFolder extends React.Component {
             .then(response => {
                 if (!response.ok)
                     return response.json().then(error => { throw error })
-                console.log(response);
                 return response.json();
             })
             .then(folder => {

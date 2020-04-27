@@ -7,4 +7,7 @@ export default React.createContext({
   addNewFolder: () => {}, 
   addNewNote: () => {},
   deleteFolder: () => {},
+  
+  withRouter: () => {},
+  Router: () => {},
 })

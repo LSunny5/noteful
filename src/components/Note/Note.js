@@ -1,6 +1,6 @@
 import React from 'react';
 import './Note.css';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import dateFormat from 'dateformat';
 import NotefulContext from '../../NotefulContext';
 import config from '../../config';
@@ -82,4 +82,4 @@ Note.propTypes = {
     )
 };
 
-export default withRouter(Note)
+export default Note

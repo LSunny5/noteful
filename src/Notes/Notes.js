@@ -59,6 +59,7 @@ class Notes extends React.Component {
     }
 }
 
+//learn react
 Notes.propTypes = {
     notes: PropTypes.arrayOf(
         PropTypes.shape({
