@@ -44,11 +44,9 @@
     border-bottom: none;/*disappears*/
 }
 
-
 .addButton {
     background: rgb(255, 209, 83);
     font-size: 18px;
-
     padding: 0.5em 2.5em;
     text-decoration: none;
     border-radius: 30px;
@@ -56,9 +54,3 @@
     font-weight: bolder;
     border-bottom: solid 4px #627295;
 }
-
-
-
-
-
-

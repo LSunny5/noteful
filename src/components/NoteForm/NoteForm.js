@@ -1,5 +1,4 @@
 import React from 'react';
-import './NoteForm.css';
 
 function NoteForm(props) {
     const {className, ...otherProps} = props

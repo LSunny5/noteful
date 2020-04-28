@@ -78,3 +78,9 @@ legend {
     border: 3px solid orange;
     background: yellow;
 }
+
+.errorBox {
+    font-size: 1.2em;
+    font-weight: bolder;
+    color: red;
+}
