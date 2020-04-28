@@ -16,11 +16,11 @@ Another fun project to better learn React!
 This noteful app was created for educational purposes for providing a user to create notes and organize them through folders.  Users can delete notes, folders, as well as add folders and notes as needed.  Data is currently saved on a JSON server.  When users click a note they will have the option to read the whole note as well as delete.  
 
 ## Screenshots:  
-![All notes](screenshots/Noteful SS1.png)
-![All notes mobile](screenshots/Noteful SS2.png)
-![Note details](screenshots/Noteful SS3.png)
-![Add Note](screenshots/Noteful SS4.png)
-![Add Folder](screenshots/Noteful SS5.png)
+![Allnotes](screenshots/Noteful SS1.png)
+![Allnotesmobile](screenshots/Noteful SS2.png)
+![Notedetails](screenshots/Noteful SS3.png)
+![AddNote](screenshots/Noteful SS4.png)
+![AddFolder](screenshots/Noteful SS5.png)
 
 ## Noteful JSON Server
 This is a project for education purposes created by Thinkful.
