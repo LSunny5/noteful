@@ -115,7 +115,8 @@ class App extends React.Component {
               key={path}
               path={path}
               exact
-              component={Notes}
+              //component={Notes}
+              render={props => <Notes {...props} />}
             />
           ))}
 
@@ -135,8 +136,6 @@ class App extends React.Component {
           />
 
           <Route component={NotFoundPage} />
-
-          
         </Switch>
       </div>
     );

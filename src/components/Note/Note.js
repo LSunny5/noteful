@@ -82,4 +82,4 @@ Note.propTypes = {
     )
 };
 
-export default Note
+export default Note;

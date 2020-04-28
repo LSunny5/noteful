@@ -1,7 +1,6 @@
 import React from 'react';
 import './DisplayNote.css';
 import Note from '../Note/Note';
-
 import NotefulContext from '../../NotefulContext';
 import { findNote } from '../../noteFunctions';
 import PropTypes from 'prop-types';
@@ -27,6 +26,7 @@ class DisplayNote extends React.Component {
                     //name={note.name}
                     title={note.title}
                     modified={note.modified}
+                    history={this.props.history}
                 />
                 <div className="noteDesc">
                     {note.content.split(/\n \r|\n/).map((paragraph, index) =>

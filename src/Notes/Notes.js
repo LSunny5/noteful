@@ -49,6 +49,7 @@ class Notes extends React.Component {
                                         /* name={note.name} */
                                         title={note.title}
                                         modified={note.modified}
+                                        history={this.props.history}
                                     />
                                 </NoteError>
                             </li>
