@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This is my Noteful React Client that works with the noteful-server.
+
 # Noteful Application with JSON
 This app with allow you to create and add notes in folders.  
 
